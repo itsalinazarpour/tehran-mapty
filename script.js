@@ -154,7 +154,7 @@ class App {
       const elevation = +inputElevation.value;
       // check if data is valid
       if (duration <= 0 || distance <= 0 || !(duration + distance + elevation))
-        return alert("Inputs have to be positive numbers");
+        return alert("Duration and distance have to be positive numbers");
 
       workout = new Cycling(distance, duration, [lat, lng], elevation);
     }
