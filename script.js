@@ -69,14 +69,17 @@ class App {
   #workouts = [];
   #mapZoomLevel = 12;
   #dropBtns;
+  #btnsClear;
   constructor() {
     // Get data from local storage
     this._getLocalStorage();
     this.#dropBtns = document.querySelectorAll(".dropbtn");
+    this.#btnsClear = document.querySelectorAll(".clear");
 
     // Load map
     this._loadMap();
 
+    /////////////////////////////
     // Atach event handlers
 
     form.addEventListener("submit", this._newWorkout.bind(this));
@@ -90,6 +93,11 @@ class App {
 
     // Close dropdowns by click anywhere
     document.body.addEventListener("click", this._closeDropdowns, true);
+
+    // Clear all workouts
+    this.#btnsClear.forEach((clear) =>
+      clear.addEventListener("click", this._clearAllWorkouts)
+    );
   }
 
   _loadMap() {
@@ -190,6 +198,12 @@ class App {
     this.#dropBtns.forEach((dropBtn) => {
       dropBtn.addEventListener("click", this._showDropdown);
     });
+
+    // update Clear all workouts
+    this.#btnsClear = document.querySelectorAll(".clear");
+    this.#btnsClear.forEach((clear) =>
+      clear.addEventListener("click", this._clearAllWorkouts)
+    );
   }
 
   _renderWorkoutMarker(workout) {
@@ -223,9 +237,9 @@ class App {
     </ul>
 
     <div id="myDropdown" class="dropdown-content">
-      <a href="#home">Edit</a>
-      <a href="#about">Delete</a>
-      <a href="#contact">Clear all workouts</a>
+      <a href="javascript:void(0)" class="edit">Edit</a>
+      <a href="javascript:void(0)" class="delete">Delete</a>
+      <a href="javascript:void(0)" class="clear">Clear all workouts</a>
     </div>
   </div>
           <h2 class="workout__title">
@@ -310,12 +324,6 @@ class App {
     });
   }
 
-  // reset local storage
-  reset() {
-    localStorage.removeItem("workouts");
-    location.reload();
-  }
-
   _showDropdown() {
     this.nextElementSibling.classList.toggle("show");
   }
@@ -325,6 +333,11 @@ class App {
       document
         .querySelectorAll(".dropdown-content")
         .forEach((d) => d.classList.remove("show"));
+  }
+
+  _clearAllWorkouts() {
+    localStorage.removeItem("workouts");
+    location.reload();
   }
 }
 
