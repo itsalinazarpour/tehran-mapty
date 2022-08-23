@@ -7,6 +7,7 @@ const inputDistance = document.querySelector(".form__input--distance");
 const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
+
 ///////////////////////////////////////////////////////////////////////
 
 ////////////// Workout class
@@ -67,17 +68,28 @@ class App {
   #map;
   #workouts = [];
   #mapZoomLevel = 12;
+  #dropBtns;
   constructor() {
     // Get data from local storage
     this._getLocalStorage();
+    this.#dropBtns = document.querySelectorAll(".dropbtn");
 
     // Load map
     this._loadMap();
 
     // Atach event handlers
+
     form.addEventListener("submit", this._newWorkout.bind(this));
     inputType.addEventListener("change", this._toggleElevationField);
     containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
+
+    // Open dropdowns by click on dropbtn
+    this.#dropBtns.forEach((dropBtn) => {
+      dropBtn.addEventListener("click", this._showDropdown);
+    });
+
+    // Close dropdowns by click anywhere
+    document.body.addEventListener("click", this._closeDropdowns, true);
   }
 
   _loadMap() {
@@ -172,6 +184,12 @@ class App {
 
     // set locale storage
     this._setLocalStorage();
+
+    // update dropbtns
+    this.#dropBtns = document.querySelectorAll(".dropbtn");
+    this.#dropBtns.forEach((dropBtn) => {
+      dropBtn.addEventListener("click", this._showDropdown);
+    });
   }
 
   _renderWorkoutMarker(workout) {
@@ -194,7 +212,22 @@ class App {
 
   _renderWorkoutInList(workout) {
     let html = `
-       <li class="workout workout--${workout.type}" data-id="${workout.id}">
+    <li class="workout workout--${workout.type}" data-id="${workout.id}">
+    <div class="dropdown">
+    <ul
+      class="dropbtn icons btn-right showLeft"
+    >
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#home">Edit</a>
+      <a href="#about">Delete</a>
+      <a href="#contact">Clear all workouts</a>
+    </div>
+  </div>
           <h2 class="workout__title">
             ${workout.discription}
           </h2>
@@ -281,6 +314,17 @@ class App {
   reset() {
     localStorage.removeItem("workouts");
     location.reload();
+  }
+
+  _showDropdown() {
+    this.nextElementSibling.classList.toggle("show");
+  }
+
+  _closeDropdowns(e) {
+    if (!e.target.matches("dropbtn"))
+      document
+        .querySelectorAll(".dropdown-content")
+        .forEach((d) => d.classList.remove("show"));
   }
 }
 

@@ -4,6 +4,7 @@
 
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
+  --color-dark--3: #4e555c;
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: rgb(214, 222, 224);
@@ -69,6 +70,7 @@ a:visited {
 .workout {
   background-color: var(--color-dark--2);
   border-radius: 5px;
+  position: relative;
   padding: 1.5rem 2.25rem;
   margin-bottom: 1.75rem;
   cursor: pointer;
@@ -222,4 +224,82 @@ a:visited {
 
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
+}
+
+/* dropdown menu */
+.icons li {
+  background: none repeat scroll 0 0 var(--color-light--1);
+  height: 4px;
+  width: 4px;
+  line-height: 0;
+  list-style: none outside none;
+  margin: 2px;
+  vertical-align: top;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all .3s;
+}
+
+.icons:hover li {
+  background: none repeat scroll 0 0 var(--color-light--2);
+
+}
+
+.btn-left {
+  left: 0.4em;
+}
+
+.btn-right {
+  right: 1rem;
+}
+
+.btn-left, .btn-right {
+  position: absolute;
+  top: 1rem;
+}
+
+.dropbtn {
+  display: flex;
+  position: absolute;
+  padding: .5rem;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  right: 0.4em;
+}
+
+.dropdown-content {
+  right: 10px;
+  position: absolute;
+  margin-top: 33px;
+  display: none;
+  background-color: var(--color-dark--3);
+  min-width: 145px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: all .3s;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: var(--color-light--2);
+  font-size: 1.3rem;
+  padding: 7px 9px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: var(--color-dark--2)
+}
+
+.show {
+  display: block;
 }
