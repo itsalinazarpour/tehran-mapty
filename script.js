@@ -179,7 +179,13 @@ class App {
         cadance <= 0 ||
         !(duration + distance + cadance)
       )
-        return alert("Inputs have to be positive numbers");
+        return Swal.fire({
+          icon: "error",
+          title: "Make sure your inputs are positive numbers!",
+          background: "#2d3439",
+          heightAuto: false,
+          width: "auto",
+        });
 
       workout = new Running(distance, duration, [lat, lng], cadance);
     }
@@ -189,7 +195,14 @@ class App {
       const elevation = +inputElevation.value;
       // check if data is valid
       if (duration <= 0 || distance <= 0 || !(duration + distance + elevation))
-        return alert("Duration and distance have to be positive numbers");
+        return Swal.fire({
+          icon: "error",
+          title:
+            "Make sure your Duration and Distance inputs are positive numbers!",
+          background: "#2d3439",
+          heightAuto: false,
+          width: "auto",
+        });
 
       workout = new Cycling(distance, duration, [lat, lng], elevation);
     }
