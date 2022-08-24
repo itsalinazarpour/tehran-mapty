@@ -70,11 +70,13 @@ class App {
   #mapZoomLevel = 12;
   #dropBtns;
   #btnsClear;
+  #btnsDelete;
   constructor() {
     // Get data from local storage
     this._getLocalStorage();
     this.#dropBtns = document.querySelectorAll(".dropbtn");
     this.#btnsClear = document.querySelectorAll(".clear");
+    this.#btnsDelete = document.querySelectorAll(".delete");
 
     // Load map
     this._loadMap();
@@ -96,8 +98,11 @@ class App {
 
     // Clear all workouts
     this.#btnsClear.forEach((clear) =>
-      clear.addEventListener("click", this._clearAllWorkouts)
+      clear.addEventListener("click", this._clearAllWorkouts.bind(this))
     );
+
+    // Delete a workout
+    this.#btnsDelete.forEach((d) => d.addEventListener("click", this._delete));
   }
 
   _loadMap() {
@@ -202,12 +207,23 @@ class App {
     // update Clear all workouts
     this.#btnsClear = document.querySelectorAll(".clear");
     this.#btnsClear.forEach((clear) =>
-      clear.addEventListener("click", this._clearAllWorkouts)
+      clear.addEventListener("click", this._clearAllWorkouts.bind(this))
     );
+
+    // update delete a workout
+    this.#btnsDelete = document.querySelectorAll(".delete");
+    this.#btnsDelete.forEach((d) => d.addEventListener("click", this._delete));
   }
 
   _renderWorkoutMarker(workout) {
-    L.marker(workout.coords)
+    var myIcon = L.icon({
+      iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon-2x.png",
+      iconSize: [25, 41],
+      iconAnchor: [24, 44],
+      popupAnchor: [-12, -41],
+      className: `${workout.id}`,
+    });
+    L.marker(workout.coords, { icon: myIcon })
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -215,7 +231,7 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${workout.type}-popup`,
+          className: `${workout.type}-popup ${workout.id}`,
         })
       )
       .setPopupContent(
@@ -337,7 +353,39 @@ class App {
 
   _clearAllWorkouts() {
     localStorage.removeItem("workouts");
-    location.reload();
+    const workoutElements = [...document.querySelectorAll(".workout")];
+    const popups = [...document.querySelectorAll(".leaflet-popup")];
+    const markers = [...document.querySelectorAll(".leaflet-marker-icon")];
+    // const shadows = [...document.querySelectorAll(".leaflet-shadow-pane")];
+    popups.forEach((popup) => (popup.style.display = "none"));
+    markers.forEach((marker) => (marker.style.display = "none"));
+    workoutElements.forEach((workout) => (workout.style.display = "none"));
+    // shadows.forEach((shadow) => (shadow.style.display = "none"));
+    this.#workouts = [];
+    localStorage.setItem("workouts", JSON.stringify(this.#workouts));
+  }
+
+  _delete() {
+    app.#workouts = app.#workouts.filter(
+      (workout) => workout.id != this.closest(".workout").dataset.id
+    );
+    localStorage.setItem("workouts", JSON.stringify(app.#workouts));
+    this.closest(".workout").style.display = "none";
+
+    const popups = [...document.querySelectorAll(".leaflet-popup")];
+    const markers = [...document.querySelectorAll(".leaflet-marker-icon")];
+
+    popups.forEach((popup) => {
+      if (popup.classList.contains(`${this.closest(".workout").dataset.id}`)) {
+        popup.style.display = "none";
+      }
+    });
+
+    markers.forEach((marker) => {
+      if (marker.classList.contains(`${this.closest(".workout").dataset.id}`)) {
+        marker.style.display = "none";
+      }
+    });
   }
 }
 
