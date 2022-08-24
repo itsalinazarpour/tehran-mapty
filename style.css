@@ -303,3 +303,14 @@ a:visited {
 .show {
   display: block;
 }
+
+/* a.edit-comming-soon {
+  background-color: orangered;
+} */
+
+
+@media screen and (max-width:1050px) {
+  .workout {
+    cursor: auto;
+  }
+}

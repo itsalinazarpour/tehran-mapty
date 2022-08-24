@@ -71,12 +71,14 @@ class App {
   #dropBtns;
   #btnsClear;
   #btnsDelete;
+  #btnsEdit;
   constructor() {
     // Get data from local storage
     this._getLocalStorage();
     this.#dropBtns = document.querySelectorAll(".dropbtn");
     this.#btnsClear = document.querySelectorAll(".clear");
     this.#btnsDelete = document.querySelectorAll(".delete");
+    this.#btnsEdit = document.querySelectorAll(".edit");
 
     // Load map
     this._loadMap();
@@ -103,6 +105,14 @@ class App {
 
     // Delete a workout
     this.#btnsDelete.forEach((d) => d.addEventListener("click", this._delete));
+
+    // Edit btn
+    this.#btnsEdit.forEach((edit) =>
+      edit.addEventListener("mouseover", this._edit)
+    );
+    this.#btnsEdit.forEach((edit) =>
+      edit.addEventListener("mouseout", this._editLeave)
+    );
   }
 
   _loadMap() {
@@ -213,6 +223,15 @@ class App {
     // update delete a workout
     this.#btnsDelete = document.querySelectorAll(".delete");
     this.#btnsDelete.forEach((d) => d.addEventListener("click", this._delete));
+
+    // update Edit btn
+    this.#btnsEdit = document.querySelectorAll(".edit");
+    this.#btnsEdit.forEach((edit) =>
+      edit.addEventListener("mouseover", this._edit)
+    );
+    this.#btnsEdit.forEach((edit) =>
+      edit.addEventListener("mouseout", this._editLeave)
+    );
   }
 
   _renderWorkoutMarker(workout) {
@@ -345,7 +364,7 @@ class App {
   }
 
   _closeDropdowns(e) {
-    if (!e.target.matches("dropbtn"))
+    if (!e.target.matches(".edit"))
       document
         .querySelectorAll(".dropdown-content")
         .forEach((d) => d.classList.remove("show"));
@@ -386,6 +405,16 @@ class App {
         marker.style.display = "none";
       }
     });
+  }
+
+  _edit() {
+    this.textContent = `Comming soon ...`;
+    this.style.fontStyle = "italic";
+  }
+
+  _editLeave() {
+    this.textContent = `Edit`;
+    this.style.fontStyle = "inherit";
   }
 }
 
