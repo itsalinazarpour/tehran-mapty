@@ -130,6 +130,11 @@ class App {
     this.#workouts.forEach((workout) => {
       this._renderWorkoutMarker(workout);
     });
+
+    if (this.#workouts.length >= 1) {
+      const allCoords = this.#workouts.map((workout) => workout.coords);
+      this.#map.fitBounds(allCoords);
+    }
   }
 
   _showForm(e) {
