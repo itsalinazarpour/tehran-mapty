@@ -24,7 +24,7 @@ class Workout {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    this.discription = `${this.type === "running" ? "Running" : "Cycling"} on ${
+    this.discription = `${this.type === "running" ? "Running" : "Cycling"}: ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
   }
@@ -211,45 +211,79 @@ class App {
 
       workout = new Cycling(distance, duration, [lat, lng], elevation);
     }
-    // add new object to workouts array
-    this.#workouts.push(workout);
 
     // render workout on map as marker
     this._renderWorkoutMarker(workout);
 
-    // render workout on the list
-    this._renderWorkoutInList(workout);
+    // add neighbourhood name to the workout heading
+    this._setNeighbourhood(workout);
+  }
 
-    // hide form and clear inputs
-    this._hideform();
+  async _setNeighbourhood(workout) {
+    try {
+      // timeout counter
+      const timeout = function (sec) {
+        return new Promise(function (_, reject) {
+          setTimeout(function () {
+            reject(new Error("Request took too long!"));
+          }, sec * 1000);
+        });
+      };
 
-    // set locale storage
-    this._setLocalStorage();
+      // check if api doesn't response in 3 seconds
+      const res = await Promise.race([
+        fetch(
+          `https://geocode.xyz/${workout.coords.at(0)},${workout.coords.at(
+            1
+          )}?geoit=json&auth=722216078602093542842x107409`
+        ),
+        timeout(3),
+      ]);
 
-    // update dropbtns
-    this.#dropBtns = document.querySelectorAll(".dropbtn");
-    this.#dropBtns.forEach((dropBtn) => {
-      dropBtn.addEventListener("click", this._showDropdown);
-    });
+      const data = await res.json();
+      workout.neighbourhood = await data.osmtags.name;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      // add new object to workouts array
+      this.#workouts.push(workout);
 
-    // update Clear all workouts
-    this.#btnsClear = document.querySelectorAll(".clear");
-    this.#btnsClear.forEach((clear) =>
-      clear.addEventListener("click", this._clearAllWorkouts.bind(this))
-    );
+      // render workout on the list
+      this._renderWorkoutInList(workout);
 
-    // update delete a workout
-    this.#btnsDelete = document.querySelectorAll(".delete");
-    this.#btnsDelete.forEach((d) => d.addEventListener("click", this._delete));
+      // hide form and clear inputs
+      this._hideform();
 
-    // update Edit btn
-    this.#btnsEdit = document.querySelectorAll(".edit");
-    this.#btnsEdit.forEach((edit) =>
-      edit.addEventListener("mouseover", this._edit)
-    );
-    this.#btnsEdit.forEach((edit) =>
-      edit.addEventListener("mouseout", this._editLeave)
-    );
+      // set locale storage
+      this._setLocalStorage();
+
+      // update dropbtns
+      this.#dropBtns = document.querySelectorAll(".dropbtn");
+      this.#dropBtns.forEach((dropBtn) => {
+        dropBtn.addEventListener("click", this._showDropdown);
+      });
+
+      // update Clear all workouts
+      this.#btnsClear = document.querySelectorAll(".clear");
+      this.#btnsClear.forEach((clear) =>
+        clear.addEventListener("click", this._clearAllWorkouts.bind(this))
+      );
+
+      // update delete a workout
+      this.#btnsDelete = document.querySelectorAll(".delete");
+      this.#btnsDelete.forEach((d) =>
+        d.addEventListener("click", this._delete)
+      );
+
+      // update Edit btn
+      this.#btnsEdit = document.querySelectorAll(".edit");
+      this.#btnsEdit.forEach((edit) =>
+        edit.addEventListener("mouseover", this._edit)
+      );
+      this.#btnsEdit.forEach((edit) =>
+        edit.addEventListener("mouseout", this._editLeave)
+      );
+    }
   }
 
   _renderWorkoutMarker(workout) {
@@ -266,7 +300,7 @@ class App {
         L.popup({
           maxWidth: 350,
           minWidth: 100,
-          autoClose: false,
+          autoClose: true,
           closeOnClick: false,
           className: `${workout.type}-popup ${workout.id}`,
         })
@@ -296,7 +330,9 @@ class App {
     </div>
   </div>
           <h2 class="workout__title">
-            ${workout.discription}
+            ${workout.discription} &nbsp;${
+      workout.neighbourhood ? workout.neighbourhood : ""
+    }
           </h2>
           <div class="workout__details">
             <span class="workout__icon">${
@@ -437,3 +473,10 @@ class App {
 }
 
 const app = new App();
+
+///////////////////////////////////////
+// fetch(
+//   "https://geocode.xyz/35.671031299865824,51.05498711253165?geoit=json&auth=722216078602093542842x107409"
+// )
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
