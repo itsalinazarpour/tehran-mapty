@@ -24,7 +24,7 @@
     }
 
     .sidebar {
-        flex-basis: 40%;
+        flex-basis: 49%;
         padding: 1rem 1rem;
     }
 
@@ -112,5 +112,9 @@
     .btn-right {
         top: 0.5rem !important;
         right: 0.1rem !important;
+    }
+
+    .workout-caption {
+        padding: 1.2rem 2.25rem;
     }
 }

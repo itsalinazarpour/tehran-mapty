@@ -61,6 +61,7 @@ a:visited {
   height: 77vh;
   overflow-y: scroll;
   overflow-x: hidden;
+  position: relative;
 }
 
 .workouts::-webkit-scrollbar {
@@ -74,10 +75,28 @@ a:visited {
   padding: 1.5rem 2.25rem;
   margin-bottom: 1.75rem;
   cursor: pointer;
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.75rem 1.5rem;
+
+}
+
+.workout:nth-of-type(1) {
+  z-index: 2;
+}
+
+.workout-caption {
+  background-color: #42484da6;
+  border-radius: 5px;
+  padding: 2.5rem 2.25rem;
+  margin-bottom: 1.75rem;
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .workout--running {
@@ -124,14 +143,14 @@ a:visited {
   border-radius: 5px;
   padding: 1.5rem 2.75rem;
   margin-bottom: 1.75rem;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem 1.5rem;
-
+  position: relative;
   /* Match height and activity boxes */
   height: 9.25rem;
   transition: all 0.5s, transform 1ms;
+  z-index: 2;
 }
 
 .form.hidden {
@@ -285,7 +304,7 @@ a:visited {
   min-width: 145px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 4;
   transition: all .3s;
   border-radius: 5px;
 }

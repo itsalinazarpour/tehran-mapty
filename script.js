@@ -113,6 +113,9 @@ class App {
     this.#btnsEdit.forEach((edit) =>
       edit.addEventListener("mouseout", this._editLeave)
     );
+
+    // check body width for caption text
+    this._changeCaption();
   }
 
   _loadMap() {
@@ -443,7 +446,7 @@ class App {
       (workout) => workout.id != this.closest(".workout").dataset.id
     );
     localStorage.setItem("workouts", JSON.stringify(app.#workouts));
-    this.closest(".workout").style.display = "none";
+    this.closest(".workout").remove();
 
     const popups = [...document.querySelectorAll(".leaflet-popup")];
     const markers = [...document.querySelectorAll(".leaflet-marker-icon")];
@@ -469,6 +472,14 @@ class App {
   _editLeave() {
     this.textContent = `Edit`;
     this.style.fontStyle = "inherit";
+  }
+
+  _changeCaption() {
+    if (document.querySelector("body").clientWidth <= 1200) {
+      document.querySelector(
+        ".workout-caption"
+      ).innerHTML = `Touch the map to save your workout details.<br/>By reloading the page, you won't lose them!`;
+    }
   }
 }
 
