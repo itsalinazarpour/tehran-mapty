@@ -97,6 +97,8 @@ a:visited {
 .workout__details {
   display: flex;
   align-items: baseline;
+
+
 }
 
 .workout__icon {
@@ -176,7 +178,7 @@ a:visited {
 }
 
 .copyright {
-  margin-top: auto;
+  margin-top: 1rem;
   font-size: 1.3rem;
   text-align: center;
   color: var(--color-light--1);
@@ -307,10 +309,3 @@ a:visited {
 /* a.edit-comming-soon {
   background-color: orangered;
 } */
-
-
-@media screen and (max-width:1050px) {
-  .workout {
-    cursor: auto;
-  }
-}

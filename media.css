@@ -1,0 +1,116 @@
+@media (max-width: 1200px) {
+    body {
+        padding: 1rem;
+    }
+
+    .workout {
+        cursor: auto;
+    }
+
+    .sidebar {
+        flex-basis: 40rem;
+        padding: 2rem 1rem 2rem 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+
+    html {
+        font-size: 54.5%;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    .sidebar {
+        flex-basis: 40%;
+        padding: 1rem 1rem;
+    }
+
+    .workout {
+        padding: 0.5rem 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .workouts {
+        height: 100%;
+    }
+
+    .logo {
+        height: 3.2rem;
+        margin-bottom: 1rem;
+    }
+
+
+    .leaflet-marker-icon {
+        margin-left: -10px !important;
+        margin-top: -34px !important;
+        width: 18px !important;
+        height: 28px !important;
+    }
+
+    .leaflet-popup {
+        bottom: -17px !important;
+        left: -85px !important;
+    }
+
+    .leaflet-popup-content {
+        margin: 9px 24px 9px 20px !important;
+    }
+
+    .form {
+        padding: 1rem 0.75rem;
+        margin-bottom: 0.75rem;
+        gap: 0rem 0.5rem;
+        height: 8.25rem;
+    }
+
+    /* .workout__details {
+        overflow-x: scroll;
+    } */
+
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 45.5%;
+    }
+
+    .leaflet-popup {
+        left: -72px !important;
+    }
+
+    .workout {
+        gap: 0rem 0.5rem;
+    }
+
+    body {
+        flex-direction: column-reverse;
+    }
+
+    .sidebar {
+        height: 45%;
+    }
+
+    .leaflet-touch .leaflet-bar a {
+        width: 20px !important;
+        height: 20px !important;
+        line-height: 20px !important;
+        font-size: 15px !important;
+    }
+
+    .dropdown-content {
+        right: 10px;
+        margin-top: 25px;
+    }
+
+    .leaflet-control-attribution {
+        display: none !important;
+    }
+
+    .btn-right {
+        top: 0.5rem !important;
+        right: 0.1rem !important;
+    }
+}

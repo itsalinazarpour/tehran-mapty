@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="icon.png" />
 
+    <!-- font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
 
+    <!-- core css -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
 
     <!-- leaflet map should come before our script-->
     <link
@@ -54,13 +57,18 @@
           </div>
           <div class="form__row">
             <label class="form__label">Distance</label>
-            <input class="form__input form__input--distance" placeholder="km" />
+            <input
+              class="form__input form__input--distance"
+              placeholder="km"
+              type="number"
+            />
           </div>
           <div class="form__row">
             <label class="form__label">Duration</label>
             <input
               class="form__input form__input--duration"
               placeholder="min"
+              type="number"
             />
           </div>
           <div class="form__row">
@@ -68,6 +76,7 @@
             <input
               class="form__input form__input--cadence"
               placeholder="step/min"
+              type="number"
             />
           </div>
           <div class="form__row form__row--hidden">
@@ -75,6 +84,7 @@
             <input
               class="form__input form__input--elevation"
               placeholder="meters"
+              type="number"
             />
           </div>
           <button class="form__btn">OK</button>
@@ -147,14 +157,19 @@
       </ul>
 
       <p class="copyright">
-        &copy; Copyright by
+        <a
+          class="twitter-link"
+          target="_blank"
+          href="https://www.linkedin.com/in/itsalinazarpour/"
+          >Ali Nazarpour
+        </a>
+        &nbsp; &nbsp;
         <a
           class="twitter-link"
           target="_blank"
           href="https://twitter.com/jonasschmedtman"
-          >Jonas Schmedtmann</a
-        >. Use for learning or your portfolio. Don't use to teach. Don't claim
-        as your own.
+          >Jonas Schmedtmann
+        </a>
       </p>
     </div>
 
