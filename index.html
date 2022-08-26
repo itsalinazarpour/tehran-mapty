@@ -61,6 +61,8 @@
               class="form__input form__input--distance"
               placeholder="km"
               type="number"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="6"
             />
           </div>
           <div class="form__row">
@@ -69,6 +71,8 @@
               class="form__input form__input--duration"
               placeholder="min"
               type="number"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="6"
             />
           </div>
           <div class="form__row">
@@ -77,6 +81,8 @@
               class="form__input form__input--cadence"
               placeholder="step/min"
               type="number"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="6"
             />
           </div>
           <div class="form__row form__row--hidden">
@@ -85,6 +91,8 @@
               class="form__input form__input--elevation"
               placeholder="meters"
               type="number"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="6"
             />
           </div>
           <button class="form__btn">OK</button>
