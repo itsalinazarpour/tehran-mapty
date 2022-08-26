@@ -128,4 +128,9 @@
         padding: 1.2rem 2.25rem;
         height: 8.25rem;
     }
+
+    .logo {
+        height: 4rem;
+        margin-bottom: 1rem;
+    }
 }
