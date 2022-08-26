@@ -91,6 +91,7 @@
 
     .sidebar {
         flex-basis: 48%;
+        height: 48%;
     }
 
     .leaflet-touch .leaflet-bar a {
