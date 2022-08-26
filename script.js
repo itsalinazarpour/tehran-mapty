@@ -238,7 +238,7 @@ class App {
         fetch(
           `https://geocode.xyz/${workout.coords.at(0)},${workout.coords.at(
             1
-          )}?geoit=json&auth=722216078602093542842x107409`
+          )}?geoit=json&auth=20350830646274585843x105669 `
         ),
         timeout(3),
       ]);

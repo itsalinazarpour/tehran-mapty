@@ -118,7 +118,7 @@ a:visited {
 .workout__details {
   display: flex;
   align-items: baseline;
-
+  justify-content: center;
 
 }
 
