@@ -60,10 +60,11 @@
     }
 
     .form {
-        padding: 1rem 0.75rem;
+        padding: 0.5rem 1rem;
         margin-bottom: 0.75rem;
         gap: 0rem 0.5rem;
-        height: 8.25rem;
+        height: 63.0625px;
+
     }
 
     /* .workout__details {
@@ -77,13 +78,19 @@
         font-size: 45.5%;
     }
 
+    .form {
+        height: 8.25rem;
+    }
+
     .leaflet-popup {
         left: -72px !important;
     }
 
     .workout {
         gap: 0rem 0.5rem;
+        height: 8.25rem;
     }
+
 
     body {
         flex-direction: column-reverse;
@@ -117,5 +124,6 @@
 
     .workout-caption {
         padding: 1.2rem 2.25rem;
+        height: 8.25rem;
     }
 }
