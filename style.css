@@ -87,7 +87,7 @@ a:visited {
 }
 
 .workout-caption {
-  background-image: linear-gradient(to bottom, #42484d40, transparent);
+  background-image: linear-gradient(to bottom, #00345c6b, #00345c14);
   border-radius: 5px;
   padding: 2.5rem 2.25rem;
   margin-bottom: 1.75rem;
