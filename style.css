@@ -2,9 +2,9 @@
   --color-brand--1: #ffb545;
   --color-brand--2: #00c46a;
 
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
-  --color-dark--3: #4e555c;
+  --color-dark--1: #002238;
+  --color-dark--2: #00345c;
+  --color-dark--3: #0050a1;
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: rgb(214, 222, 224);
@@ -28,9 +28,9 @@ body {
   line-height: 1.6;
   height: 100vh;
   overscroll-behavior-y: none;
-
   background-color: #fff;
-  padding: 2.5rem;
+  padding: 1.5rem;
+  padding-right: 0;
 
   display: flex;
 }
@@ -48,6 +48,7 @@ a:visited {
   padding: 3rem 5rem 4rem 5rem;
   display: flex;
   flex-direction: column;
+  border-top-left-radius: 15px;
 }
 
 .logo {
