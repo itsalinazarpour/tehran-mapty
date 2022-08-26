@@ -102,10 +102,10 @@
     }
 
     .leaflet-touch .leaflet-bar a {
-        width: 20px !important;
-        height: 20px !important;
-        line-height: 20px !important;
-        font-size: 15px !important;
+        width: 25px !important;
+        height: 25px !important;
+        line-height: 25px !important;
+        font-size: 17px !important;
     }
 
     .dropdown-content {

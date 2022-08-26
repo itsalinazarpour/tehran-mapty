@@ -67,7 +67,7 @@ class App {
   #mapEvent;
   #map;
   #workouts = [];
-  #mapZoomLevel = 12;
+  #mapZoomLevel = 11;
   #dropBtns;
   #btnsClear;
   #btnsDelete;
