@@ -1,7 +1,7 @@
 <img src="logo.png">
 
 ## Live demo:
-## https://itsalinazarpour.github.io/mapteh/
+## https://itsalinazarpour.github.io/tehran-mapty/
 
 ## #OOP #asynchronous #API 
 
