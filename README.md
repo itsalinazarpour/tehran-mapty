@@ -18,4 +18,4 @@
 - **Geocode location** from coordinates and display it on the workout list
 - **Display neighbourhood** for workout time and place 
 - Click on popup, **move map** to corresponding popup
-- Map Zoom and View control
+- Map zoom and view control
