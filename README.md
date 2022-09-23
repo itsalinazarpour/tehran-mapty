@@ -10,6 +10,7 @@
 
 ## I have made the following changes: 
 
+
 - Design as a **Responsive** web 
 - **Markup** and **styling** for new created **submenus** & realistic **error message**
 - Abilities to **delete** workout and **delete all** workouts
@@ -17,4 +18,4 @@
 - **Geocode location** from coordinates and display it on the workout list
 - **Display neighbourhood** for workout time and place 
 - Click on popup, **move map** to corresponding popup
-- Map Zoom and View control
+- Map zoom and view control
