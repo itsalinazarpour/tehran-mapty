@@ -1,6 +1,8 @@
 @media (max-width: 1200px) {
     body {
         padding: 1rem;
+        padding-right: 0;
+
     }
 
     .workout {
@@ -26,6 +28,8 @@
     .sidebar {
         flex-basis: 49%;
         padding: 1rem 1rem;
+        border-top-left-radius: 0;
+
     }
 
     .workout {
@@ -99,7 +103,6 @@
     .sidebar {
         flex-basis: 48%;
         height: 48%;
-        border-top-left-radius: 0;
 
     }
 
